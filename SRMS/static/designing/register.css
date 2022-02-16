@@ -1,0 +1,90 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: rgb(204, 162, 169) !important;
+}
+
+.user_card {
+  width: 350px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgb(235, 235, 235);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.form_container {
+  margin-top: 20px;
+}
+
+#form-title {
+  color: rgb(68, 68, 67);
+}
+
+.login_btn {
+  width: 100%;
+  background-color: rgb(56, 53, 59) !important;
+  color: rgb(168, 162, 162) !important;
+}
+
+.login_btn:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+/* .login_btn:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+} */
+
+.login_container {
+  padding: 0 2rem;
+}
+
+.loggin span {
+  display: inline-block;
+  background-color: rgb(56, 53, 59);
+  border-radius: 3px;
+  padding-right: 8px;
+  margin-left: 5px;
+}
+
+.loggin span a {
+  color: white;
+  text-decoration: none;
+}
+
+.loggin span:hover {
+  background-color: rgb(75, 72, 78);
+}
+
+.input-group-text {
+  background: #f7ba5b !important;
+  color: rgb(63, 58, 58) !important;
+  border: 0 !important;
+  border-radius: 0.25rem 0 0 0.25rem !important;
+  height: 38px;
+  margin: 20px 0px 20px 0px;
+}
+
+.input_user,
+.input_pass:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+}
+
+.form_container input {
+  width: 250px;
+  margin: 20px 0px 20px 0px;
+}

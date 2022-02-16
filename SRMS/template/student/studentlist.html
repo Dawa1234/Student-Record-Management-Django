@@ -1,0 +1,106 @@
+{% extends 'admin/adminpage.html' %}
+
+<!-- Title of the page -->
+{% block title %}
+Enrolled sutdents
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="student-list">
+    <!-- Top Header -->
+    <div style="text-align: center;">
+        <h2 id="header">STUDENT LIST</h2>
+    </div>
+
+    <!-- Total No. of Students -->
+    <div style="padding-left: 3%; margin-top: 30px; font-family: 'Times New Roman', Times, serif;">
+        <h4>No. of Students: {{total_student}}</h4>
+    </div>
+
+
+    <!-- Search Bar -->
+    <div style="padding: 5px 0px 5px  3%;">
+        <span style="display: inline-block; padding: 6.5px 6.5px 6.5px 9px; margin-right: -6px; width: 35px; height: 38px;
+             border-radius: 3px 0px 0px 3px; border: 1px solid black;">
+            <i class="fas fa-search"></i>
+        </span>
+        <input style="width: 35%; height: 38px; padding: 5px;" type="text" id="myInput" onkeyup="myFunction()"
+            placeholder="Search by name..">
+    </div>
+
+    <!-- For Pagination -->
+    <div style="position: relalive; text-align: left; padding: 10px 0px 10px 3%;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <select name="showrecords" id="showrecords">
+                <option selected="true">All</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="40">40</option>
+                <option value="100">100</option>
+            </select>
+            <input type="submit" value="Show" style="border: 1px solid black;">
+            </input>
+            {% if messages %}
+            {% for message in messages %}
+
+            {% if message.tags == "info" %}
+            <span id="info"
+                style="width: 80%; text-align: center; font-size: 20px;text-decoration: underline; font-family:'Times New Roman', Times, serif; display: inline-block; ">
+                {{message}}
+            </span>
+            {% endif %}
+
+            {% if message.tags == "success" %}
+            <span id="successful"
+                style="width: 80%; text-align: center; font-size: 16px; color: rgb(31, 110, 31); font-family:'Times New Roman', Times, serif; display: inline-block; ">
+                {{message}}
+            </span>
+            {% endif %}
+
+            {% endfor %}
+            {% endif %}
+        </form>
+    </div>
+
+    <!-- Table -->
+    <div style="display: flex; justify-content: center;">
+        <table id="myTable">
+            <tr>
+                <th class="student_id">Student Id</th>
+                <th class="student_name">Student Name</th>
+                <th class="student_phone">Student Phone</th>
+                <th class="student_class">Class</th>
+            </tr>
+            {% for data in studentdata %}
+            <tr>
+                <td class="student_id">{{data.student_id}}</td>
+                <td class="student_name">
+                    <a href="/student/studentprofile/{{data.student_id}}">
+                        {{data.student_name}}
+                    </a>
+                </td>
+                <td class="student_phone">{{data.student_phone}}</td>
+                <td class="student_class">{{data.student_class}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- For Pagination -->
+    <div style="position: relalive; text-align: right; padding-right: 3%;">
+        <a href="#header">Back to Top</a>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            $('#successful').fadeOut('fast');
+        }, 3000);
+    </script>
+</div>
+
+
+{% endblock %}

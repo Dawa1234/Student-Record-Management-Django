@@ -1,0 +1,82 @@
+{% extends 'admin/adminpage.html' %}
+
+<!-- Title of the page -->
+{% block title %}
+Admin Profile
+{% endblock title %}
+
+
+{% block content %}
+<div class="admin-profile">
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <span id="error" style="position: absolute; top: 1.5rem; right: 2rem; color: red;">
+        {{message}}
+    </span>
+    {% else %}
+    <span id="success" style="position: absolute; top: 1.5rem; right: 2rem; color: green;">
+        {{message}}
+    </span>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    <div class="header">
+        <h1>
+            Admin Id: {{admin_profile.id}}
+        </h1>
+    </div>
+    <div class="admin-form">
+        <form action="/admin_side/update/{{admin_profile.id}}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-control">
+                <label for="username">Username: </label>
+                <input type="text" id="username" name="username" value="{{admin_profile.username}}" disabled>
+            </div>
+            <div class="form-control">
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email" value="{{admin_profile.email}}" disabled>
+            </div>
+            <div class="form-control">
+
+                <label for="first_name">First name: </label>
+                <input type="text" id="first_name" name="first_name" value="{{admin_profile.first_name}}" disabled>
+            </div>
+            <div class="form-control">
+
+                <label for="last_name">Last name: </label>
+                <input type="text" id="last_name" name="last_name" value="{{admin_profile.last_name}}" disabled>
+            </div>
+
+            <div class="form-control">
+                <label>
+                    Account status:
+                </label>
+                {% if admin_profile.is_superuser %}
+                <input type="text" value="Admin" disabled>
+                {% else %}
+                <input type="text" value="Student" disabled>
+                {% endif %}
+            </div>
+            <div class="form-control">
+                <label>
+                    Date joined:
+                </label>
+                <input type="text" value="{{admin_profile.date_joined}}" disabled>
+            </div>
+            <div style="display: none;" class="passwords">
+                <label for="password1">Password1</label>
+                <input type="password" value="cmLZvan.FFdp53W" name="password1">
+                <br>
+                <label for="password2">Password2</label>
+                <input type="password" value="cmLZvan.FFdp53W" name="password2">
+            </div>
+
+            <input onclick="edit()" class="edit buttons" type="button" value="Edit">
+            <input class="change_password buttons" type="button" value="Change Password">
+            <input class="update buttons" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+{% endblock %}

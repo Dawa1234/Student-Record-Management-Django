@@ -1,0 +1,279 @@
+{% extends 'admin/adminpage.html' %}
+
+<!-- Title of the page -->
+{% block title %}
+Dashboard
+{% endblock title %}
+
+<!-- Main content -->
+{% block content %}
+
+<div class="dashboard">
+    <style>
+        .dashboard {
+            width: 100%;
+            /* border: 1px solid rgb(0, 0, 0); */
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            /* flex-direction: column; */
+            /* height: 70%; */
+        }
+
+        .dashboard a {
+            color: white;
+            text-decoration-line: none;
+        }
+
+        .heading {
+            background-color: rgb(255, 255, 255);
+            display: inline-block;
+            width: 100%;
+            height: 120px;
+            position: absolute;
+            top: 0rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 767px) {
+            .heading {
+                display: none;
+            }
+
+
+        }
+
+        .dash-box {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            /* border: 1px solid black; */
+            box-shadow: 0px 0px 10px rgb(189, 188, 188);
+            border-radius: 10px;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            margin: 10px 0px 10px;
+            padding-right: 15px;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .dash-box i {
+            position: absolute;
+            left: 1.3rem;
+            color: black;
+            opacity: 0.3;
+            transform: scale(12);
+        }
+
+        .dash-box h1 {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 4;
+        }
+
+        .dash-add-student i {
+            left: 2rem;
+            transform: scale(10);
+        }
+
+        .dash-class-list img {
+            position: absolute;
+            /* transform: scale(1.1); */
+            width: 100%;
+            height: 100%;
+            left: 0;
+            opacity: 0.2;
+        }
+
+
+
+        .dash-box:hover {
+            box-shadow: 0px 0px 10px black;
+            transform: scale(1.2);
+        }
+
+        .dash-student-list {
+            background-color: rgb(10, 122, 10);
+        }
+
+        .dash-class-list {
+            background-color: rgb(252, 193, 0);
+        }
+
+        .dash-add-student {
+            background-color: rgb(38, 150, 255);
+        }
+
+        /* About us */
+        .about_us {
+            padding-top: 15px;
+            position: relative;
+            width: 100%;
+            height: 300px;
+            /* background-color: red; */
+            border-top: 1px solid rgb(150, 149, 149);
+        }
+
+        .about_us img {
+            position: absolute;
+            top: 0;
+            height: 300px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .about_us .content {
+            color: rgb(87, 86, 86);
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .about_us .content div {
+            width: 70%;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 1.3rem;
+            width: 100%;
+            height: 40px;
+        }
+
+        .icons span {
+            display: inline-block;
+            margin: 0px 15px 0px 15px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            transform: scale(1.5);
+
+        }
+
+        .icons span:hover {
+
+            background-color: gainsboro;
+        }
+
+        .icons i {
+            color: rgb(138, 138, 138);
+            /* transform: scale(1.3); */
+        }
+
+        .contact_us {
+            width: 100%;
+            position: absolute;
+            bottom: 3.5rem;
+        }
+
+        .contact_us small {
+
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px 15px 0px 15px;
+        }
+    </style>
+    <span class="heading">
+        <h1>
+            Dashboard
+        </h1>
+    </span>
+
+    {% if request.user.is_superuser %}
+    <a href="/student/studentlist">
+        <div class="dash-box dash-student-list">
+            <h1>
+                Enrolled: {{enrolled}}
+            </h1>
+            <i class="fas fa-users"></i>
+            Student List
+        </div>
+    </a>
+    <a href="/student/studentclass">
+        <div class="dash-box dash-class-list">
+            <img src="/images/group.jpg" alt="group">
+
+            <span style="z-index: 4;">
+                Student/Class List
+            </span>
+
+        </div>
+    </a>
+    <a href="/admin_side/addstudent">
+        <div class="dash-box dash-add-student">
+            <i class="fas fa-user-plus"></i>
+            Add Student
+        </div>
+    </a>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% block about %}
+
+<div class="about_us">
+    <img src="/images/about_us.jpg" alt="about_us">
+    <div style="text-align: center;">
+        <h1>
+            About us
+        </h1>
+    </div>
+    <div class="content">
+        <div>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam praesentium ea iusto officia totam
+                error incidunt at, quia temporibus sit quidem? Explicabo beatae consequatur, sit et ipsam atque
+                voluptatum dolorem.
+            </p>
+        </div>
+    </div>
+    <div class="icons">
+        <span>
+            <i class="fab fa-instagram"></i>
+        </span>
+        <span>
+            <i class="fab fa-facebook-square"></i>
+        </span>
+        <span>
+            <i class="fab fa-twitter"></i>
+        </span>
+        <span>
+            <i class="fab fa-github"></i>
+        </span>
+    </div>
+    <div class="contact_us" style="text-align: center; color: rgb(160, 160, 160);">
+        <span>
+            Contact us:
+        </span>
+        <small>
+            <span>
+                <span>
+                    <img style="position: relative; width: 15px; height: 20px;""
+                        src=" /images/phone.svg" alt="phone">
+                </span>
+                +977 9283928392
+            </span>
+        </small>
+        <small>
+            <i class="far fa-envelope"></i>
+            <a style="color: rgb(160, 160, 160);" href="#">
+                example@gmail.com
+            </a>
+        </small>
+    </div>
+
+</div>
+
+
+
+{% endblock about %}

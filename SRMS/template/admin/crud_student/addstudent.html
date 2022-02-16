@@ -1,0 +1,117 @@
+{% extends 'admin/adminpage.html' %}
+
+<!-- Title of the page -->
+{% block title %}
+Student Admission
+{% endblock title %}
+
+{% block content %}
+<div class="add-student">
+    <div>
+        <h1>
+            ADD STUDENT
+        </h1>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "success" %}
+    <span id="successful" style="color: rgb(0, 255, 0);">
+        {{message}}
+    </span>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="form">
+        <form id="formm" action="/admin_side/addstudent" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Left Form -->
+            <div class="form-control-left">
+                <div class="left-form">
+                    <label for="student_name">Full Name</label>
+                    <input onkeyup="return fullnamecheck()" type="text" name="student_name" id="fullname">
+                    <small>Error message</small>
+                </div>
+                <div class="left-form">
+
+                    <label for="student_address">Address</label>
+                    <input onkeyup="return addresscheck()" type="text" name="student_address" id="address">
+                    <small>Error message</small>
+                </div>
+
+                <div class="left-form" style="padding-top: 2%;">
+
+                    <label for="student_gender">Gender</label>
+                    <select name="student_gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
+                    <label for="class">Class</label>
+                    <select name="student_class" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="left-form">
+
+                    <label for="student_age">Age</label>
+                    <input onkeyup="return agecheck()" type="text" name="student_age" id="age">
+                    <small>Error message</small>
+                </div>
+
+            </div>
+
+            <!-- Right form -->
+            <div class="form-control-right">
+                <div id="email" class="right-form">
+
+                    <label for="student_email">Email</label>
+                    <input type="email" name="student_email">
+                    <span
+                        style="position: absolute; bottom: -1.8rem; left: 0; font-size: .875rem; color:rgb(165, 165, 165);">
+                        This field is optional.
+                    </span>
+                </div>
+
+                <div class="right-form">
+
+                    <label for="student_phone">Phone</label>
+                    <input onkeyup="return phonecheck()" type="text" name="student_phone" id="phone">
+                    <small>Error message</small>
+                </div>
+                <div class="right-form">
+
+
+                    <label for="addmission_date">Addmission Date</label>
+                    <input type="date" name="addmission_date" required>
+                    <small>Error message</small>
+                </div>
+                <div class="right-form">
+
+
+                    <label for="student_image">Image</label>
+                    <input type="file" name="student_image">
+                    <span
+                        style="position: absolute; bottom: -2rem; left: 0; font-size: .875rem; color:rgb(165, 165, 165);">
+                        Note:(Only .png, .jpg, .jpeg files are supported!)</span>
+                </div>
+
+            </div>
+
+            <span style="display: inline-block; width: 90px; position: absolute; bottom: 0.2rem; right: 1rem;">
+
+                <input type="submit" value="Admit">
+            </span>
+        </form>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            $('#successful').fadeOut('fast');
+        }, 3000);
+
+    </script>
+
+</div>
+
+{% endblock %}
